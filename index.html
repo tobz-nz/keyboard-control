@@ -12,17 +12,17 @@
                 grid-template-columns: 1fr auto;
                 align-items: center;
             }
-            
+
             input {
                 padding: 8px 10px;
                 border: 1px solid #ddd;
                 border-radius: 3px;
             }
-            
+
             button {
                 padding: 8px 10px;
             }
-            
+
             output {
                 margin: 0;
                 padding: 0;
@@ -33,20 +33,22 @@
 
             keyboard-control {
                 grid-column: span 2;
-                
+
                 &:not([hidden]) {
                     display: block;
                 }
-                
+
                 a {
                     padding: 5px;
+
                     border: 1px solid color-mix(in lch, var(--bg, #ddd) 60%, black);
                     border-radius: 3px;
                     background: var(--bg, #ddd);
-                    
+
                     transition: background ease 0.2s;
 
                     &[active] {
+                        color: white;
                         --bg: color-mix(in lch, cyan 80%, black);
                     }
 
@@ -59,11 +61,11 @@
     </head>
 
     <body>
-        
+
         <form action="#search">
             <input type="search" name="search" value="a search term" autofocus>
             <button type="submit">Search</button>
-            
+
             <keyboard-control items="a" loop hidden>
                 <output>
                     <a href="#1">a search result</a>
@@ -77,13 +79,13 @@
         <script>
             document.querySelector("form").addEventListener("submit", (event) => {
                 event.preventDefault();
-                
+
                 let control = event.target.querySelector('keyboard-control')
-                
+
                 control.removeAttribute('hidden');
                 control.focus();
             });
-            
+
             document.querySelectorAll("a").forEach((result) => {
                 result.addEventListener("select", (event) => {
                     event.target.focus()
